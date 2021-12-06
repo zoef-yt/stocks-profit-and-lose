@@ -1,2 +1,2 @@
 # stocks-profit-and-lose
-Created with CodeSandbox
+Calculate if you are in profit or lose with your stocks
