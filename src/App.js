@@ -12,22 +12,28 @@ export default function App() {
     if (
       initialPrice === 0 ||
       initialPrice === undefined ||
-      initialPrice === ""
+      initialPrice === "" ||
+      initialPrice < 0
     ) {
-      console.log(initialPrice);
       setpcolor("red");
-
-      setMessage("Initial price cannot be empty or zero");
-    } else if (quantity === 0 || quantity === undefined || quantity === "") {
+      setMessage("Initial price cannot be empty or less than One");
+    } else if (
+      quantity === 0 ||
+      quantity === undefined ||
+      quantity === "" ||
+      quantity < 0
+    ) {
       console.log(quantity);
       setpcolor("red");
-
-      setMessage("quantity cannot be empty or zero");
+      setMessage("quantity cannot be empty or less than zero");
     } else {
       if (Number(currentPrice) > Number(initialPrice)) {
         console.log(initialPrice);
         var profit = (currentPrice - initialPrice) * quantity;
-        var profitPercentage = ((profit / initialPrice) * 100).toFixed(2);
+        var profitPercentage = (
+          ((profit / initialPrice) * 100) /
+          quantity
+        ).toFixed(2);
         setpcolor("green");
         setMessage(
           "😎 Congratulations! You made a good choice. You've made a profit of " +
@@ -38,7 +44,9 @@ export default function App() {
         );
       } else if (Number(initialPrice) > Number(currentPrice)) {
         var loss = (initialPrice - currentPrice) * quantity;
-        var lossPercentage = ((loss / initialPrice) * 100).toFixed(2);
+        var lossPercentage = (((loss / initialPrice) * 100) / quantity).toFixed(
+          2
+        );
         setpcolor("red");
 
         setMessage(
